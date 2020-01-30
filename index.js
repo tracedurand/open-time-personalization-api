@@ -1,12 +1,17 @@
-const http = require('http');
-const port = process.env.PORT || 3000
+const express = require('express');
+const PORT = process.env.PORT || 3000;
 
-const server = http.createServer((req, res) => {
+const app = express();
+
+app.get('/', (req, res) => {
+  console.log("default route called");
+
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/html');
-  res.end('<h1>Hello World</h1>');
+  res.end('<h1>Open Time Personalization API</h1>');
 });
 
-server.listen(port,() => {
-  console.log('Server running at port '+port);
-});
+var routes = require('./api/routes/openTimePersonalizationRoutes'); 
+routes(app);
+
+app.listen(PORT, () => console.log('Listening on ${ PORT }'));

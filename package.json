@@ -10,5 +10,11 @@
     "type": "git",
     "url": ""
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
