@@ -3,6 +3,8 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 
+global.flag = false;
+
 app.get('/', (req, res) => {
   console.log("default route called");
 

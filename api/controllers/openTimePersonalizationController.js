@@ -1,5 +1,3 @@
-'use strict';
-
 exports.getEventImage = function(req, res) {
 
     var path = require('path');
@@ -7,7 +5,9 @@ exports.getEventImage = function(req, res) {
     var currentDate = new Date();
     var seconds = currentDate.getSeconds();
 
-    if(isEven(seconds)){
+    //if(isEven(seconds)){
+    var currentFlagValue = toggleFlag();
+    if(currentFlagValue){
       res.sendFile(path.resolve('images/san-francisco-day.jpg'));
     }
     else
@@ -16,8 +16,19 @@ exports.getEventImage = function(req, res) {
     }
   };
 
-  function isEven(n) {
-    var integer = parseInt(n);
+  //function isEven(n) {
+  //  var integer = parseInt(n);
+  //
+  //  return integer % 2 == 0;
+ //}
 
-    return integer % 2 == 0;
- }
+ function toggleFlag(n) {
+  if(flag)
+  {
+    flag=false;
+  }else{
+    flag=true
+  }
+
+  return flag;
+}
