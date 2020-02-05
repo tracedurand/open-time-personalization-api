@@ -23,7 +23,6 @@ app.get('/getEventImage',(req, res) => {
 
 app.get('/StockQuote/:stockSymbol',(req, res) => {
   var symbol = req.params.stockSymbol;
-  console.log(symbol);
   
   res.sendFile(OpenTimePersonalization.getStockQuote(symbol));
 

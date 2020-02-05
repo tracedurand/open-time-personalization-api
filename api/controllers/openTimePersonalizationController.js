@@ -26,7 +26,6 @@ exports.getEventImage = function() {
 
     console.log('Before GetStockData');
     var curStockText = GetStockData(stockSymbol);
-    console.log('curStockText: ' + curStockText);
 
     var imageLocationAndName = CreateImage(curStockText);
 
@@ -45,16 +44,18 @@ exports.getEventImage = function() {
 
     var currentDateTime = GetCurrentDateTime();
 
-    console.log('Stock: ' + selectedStockSymbol);
+    console.log('Stock Symbol: ' + selectedStockSymbol);
 
     var request = require('sync-request');
     var res = request('GET', "https://query1.finance.yahoo.com/v7/finance/quote?corsDomain=finance.yahoo.com&symbols="+selectedStockSymbol);
-    console.log(res.getBody());
+    //console.log(res.getBody());
     var jsResponse = JSON.parse(res.getBody());
-    var stockValue = jsResponse["quoteResponse"]["result"][0]["regularMarketPrice"];
-    console.log('Stock Text: ' + stockText);  
+    var stockValue = jsResponse["quoteResponse"]["result"][0]["regularMarketPrice"]; 
 
     var stockText = "As of " + currentDateTime + ", " + selectedStockSymbol +  " is $" + stockValue;
+    
+    console.log('stockText: ' + stockText);
+
     return stockText;  
   }
 
@@ -62,18 +63,18 @@ exports.getEventImage = function() {
   {
 
     const { createCanvas } = require('canvas')
-    const canvas = createCanvas(700, 100)
+    const canvas = createCanvas(500, 100)
     const ctx = canvas.getContext('2d')
 
     var fs = require('fs');
 
-    ctx.font = '30px Impact';
-  
+    ctx.font = '20px Arial';
+    ctx.fillStyle = '#3498DB';
     ctx.fillText(currentStockText, 50, 50);
   
     var te = ctx.measureText('abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz');
     ctx.strokeStyle = 'rgba(0,0,0,0.5)';
-    ctx.beginPath();
+    
     ctx.lineTo(50, 102);
     ctx.lineTo(50 + te.width, 102);
     ctx.stroke();
@@ -83,7 +84,7 @@ exports.getEventImage = function() {
     console.log('GUID: ' + myGUID);
 
     var imageDirAndName = __dirname + '/../../images/' + myGUID + '.png'
-    console.log('Image Location: ' + imageDirAndName);
+    //console.log('Image Location: ' + imageDirAndName);
   
     var buf = canvas.toBuffer();
     fs.writeFileSync(imageDirAndName, buf);  
@@ -94,11 +95,20 @@ exports.getEventImage = function() {
   {
       var today = new Date();
 
-      var datetime = (today.getMonth()+1) + "/" + today.getDate() + "/" + today.getFullYear() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      var currentHours = today.getHours();
+      var currentHours = ("0" + currentHours).slice(-2);
+      var currentMinutes = today.getMinutes();
+      var currentMinutes = ("0" + currentMinutes).slice(-2);
+      var currentSeconds = today.getSeconds();
+      var currentSeconds = ("0" + currentSeconds).slice(-2);
+      var currentMonth = (today.getMonth()+1);
+      var currentMonth = ("0" + currentMonth).slice(-2);
+      var currentDate = today.getDate();
+      var currentDate = ("0" + currentDate).slice(-2);
 
-      var currentDateTime = datetime;
-      
-      return currentDateTime;
+      var datetime = currentMonth + "/" + currentDate + "/" + today.getFullYear() + " " + currentHours + ":" + currentMinutes + ":" + currentSeconds;
+
+      return datetime;
   }
 
  function toggleFlag(n) {
