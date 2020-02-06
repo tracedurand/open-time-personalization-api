@@ -63,7 +63,7 @@ exports.getEventImage = function() {
   {
 
     const { createCanvas } = require('canvas')
-    const canvas = createCanvas(550, 100)
+    const canvas = createCanvas(500, 100)
     const ctx = canvas.getContext('2d')
 
     var fs = require('fs');
@@ -97,31 +97,15 @@ exports.getEventImage = function() {
       timeZone: "America/New_York",
       year: 'numeric', month: 'numeric', day: 'numeric',
       hour: 'numeric', minute: 'numeric', second: 'numeric'
-  };
+    };
   
-  var formatter = new Intl.DateTimeFormat([], options);
-  var UTCTime = new Date();
-var localTime = formatter.format(new Date(UTCTime));
-var currentTime = formatter.format(new Date()); 
-console.log(currentTime, localTime);
+    var formatter = new Intl.DateTimeFormat([], options);
+    var UTCTime = new Date();
+    var localTime = formatter.format(new Date(UTCTime));
+    var currentTime = formatter.format(new Date()); 
+    console.log(currentTime, localTime);
 
-
-      var today = new Date();
-
-      var currentHours = today.getHours();
-      currentHours = ("0" + currentHours).slice(-2);
-      var currentMinutes = today.getMinutes();
-      currentMinutes = ("0" + currentMinutes).slice(-2);
-      var currentSeconds = today.getSeconds();
-      currentSeconds = ("0" + currentSeconds).slice(-2);
-      var currentMonth = (today.getMonth()+1);
-      currentMonth = ("0" + currentMonth).slice(-2);
-      var currentDate = today.getDate();
-      currentDate = ("0" + currentDate).slice(-2);
-
-      var datetime = currentMonth + "/" + currentDate + "/" + today.getFullYear() + " " + currentHours + ":" + currentMinutes + ":" + currentSeconds;
-
-      return datetime;
+    return localTime;
   }
 
  function toggleFlag(n) {
