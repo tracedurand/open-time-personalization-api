@@ -63,7 +63,7 @@ exports.getEventImage = function() {
   {
 
     const { createCanvas } = require('canvas')
-    const canvas = createCanvas(500, 100)
+    const canvas = createCanvas(550, 100)
     const ctx = canvas.getContext('2d')
 
     var fs = require('fs');
