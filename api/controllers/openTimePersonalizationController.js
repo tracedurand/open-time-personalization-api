@@ -68,7 +68,7 @@ exports.getEventImage = function() {
 
     var fs = require('fs');
 
-    ctx.font = '20px Arial';
+    ctx.font = 'bold 20px Arial';
     ctx.fillStyle = '#3498DB';
     ctx.fillText(currentStockText, 50, 50);
   
