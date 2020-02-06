@@ -96,15 +96,15 @@ exports.getEventImage = function() {
       var today = new Date();
 
       var currentHours = today.getHours();
-      var currentHours = ("0" + currentHours).slice(-2);
+      currentHours = ("0" + currentHours).slice(-2);
       var currentMinutes = today.getMinutes();
-      var currentMinutes = ("0" + currentMinutes).slice(-2);
+      currentMinutes = ("0" + currentMinutes).slice(-2);
       var currentSeconds = today.getSeconds();
-      var currentSeconds = ("0" + currentSeconds).slice(-2);
+      currentSeconds = ("0" + currentSeconds).slice(-2);
       var currentMonth = (today.getMonth()+1);
-      var currentMonth = ("0" + currentMonth).slice(-2);
+      currentMonth = ("0" + currentMonth).slice(-2);
       var currentDate = today.getDate();
-      var currentDate = ("0" + currentDate).slice(-2);
+      currentDate = ("0" + currentDate).slice(-2);
 
       var datetime = currentMonth + "/" + currentDate + "/" + today.getFullYear() + " " + currentHours + ":" + currentMinutes + ":" + currentSeconds;
 
