@@ -93,6 +93,19 @@ exports.getEventImage = function() {
 
   function GetCurrentDateTime()
   {
+    var options = {
+      timeZone: "America/New_York",
+      year: 'numeric', month: 'numeric', day: 'numeric',
+      hour: 'numeric', minute: 'numeric', second: 'numeric'
+  };
+  
+  var formatter = new Intl.DateTimeFormat([], options);
+  var UTCTime = new Date();
+var localTime = formatter.format(new Date(UTCTime));
+var currentTime = formatter.format(new Date()); 
+console.log(currentTime, localTime);
+
+
       var today = new Date();
 
       var currentHours = today.getHours();
